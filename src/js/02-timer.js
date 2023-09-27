@@ -49,7 +49,6 @@ const options = {
     selectedUserTime = new Date(selectedDates[0]).getTime();
 
     if (selectedUserTime < currentDate.getTime()) {
-      //   window.alert('Please choose a date in the future');
       Notiflix.Notify.failure('Please choose a date in the future');
       return;
     }
@@ -64,13 +63,14 @@ function onBtnStart() {
     clearInterval(intervalId);
   }
 
+  btnStart.disabled = true;
+
   intervalId = setInterval(() => {
     const currentTime = Date.now();
     const deltaTime = selectedUserTime - currentTime;
 
     if (deltaTime <= 0) {
       clearInterval(intervalId);
-      //   window.alert('Time is up!');
       Notiflix.Notify.success('Time is up!');
       return;
     }
